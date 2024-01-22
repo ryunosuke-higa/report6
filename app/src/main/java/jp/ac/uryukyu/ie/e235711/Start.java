@@ -1,27 +1,28 @@
 package jp.ac.uryukyu.ie.e235711;
+
 import java.util.Scanner;
 
-/**
- * ユーザーにゲームを開始するかどうかを尋ねるクラス。
- */
 public class Start {
+    private Scanner scanner;
 
-    /**
-     * ユーザーにゲームを開始するかどうかを尋ね、適切な入力があるまで繰り返す。
-     * @return ゲームを開始する場合は true、それ以外は false。
-     */
-    public boolean shouldStartGame() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("ゲームを始めますか？（はい/いいえ）");
-        String userInput = scanner.nextLine().toLowerCase();
+    public Start() {
+        this.scanner = new Scanner(System.in);
+    }
 
-        // はいまたはいいえ以外の入力があれば再度尋ねる
-        while (!userInput.equals("はい") && !userInput.equals("いいえ")) {
-            System.out.println("無効な入力です。'はい' または 'いいえ' を入力してください。");
-            userInput = scanner.nextLine().toLowerCase();
+    public int shouldStartGame() {
+        System.out.println("ゲームを始めますか？（はい:1/いいえ:2）");
+
+        int userInput = scanner.nextInt();
+
+        while (userInput != 1 && userInput != 2) {
+            System.out.println("無効な入力です。1（はい） または 2（いいえ） を入力してください。");
+            userInput = scanner.nextInt();
         }
-         // Scanner をクローズする
-         scanner.close();
-        return userInput.equals("はい");
+
+        return userInput;
+    }
+    
+    public void closeScanner() {
+        scanner.close();
     }
 }
