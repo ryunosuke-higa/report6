@@ -21,9 +21,14 @@ public class Start {
         System.out.println("ゲームを始めますか？（はい:1/いいえ:2）");
 
         int userInput = scanner.nextInt();
+        
+         if (userInput == 2) {
+            System.out.println("ゲームを中止します。");
+            System.exit(0);  
+        }
 
-        while (userInput != 1 && userInput != 2) {
-            System.out.println("無効な入力です。1（はい） または 2（いいえ） を入力してください。");
+        while (userInput != 1) {
+            System.out.println("無効な入力です。1（はい） を入力してください。");
             userInput = scanner.nextInt();
         }
 
@@ -32,6 +37,7 @@ public class Start {
      /**
      * Scannerを閉じるメソッド
      */
+    //memo 繰り返しの中でクローズだけしない
     public void closeScanner() {
         scanner.close();
     }

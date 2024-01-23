@@ -46,7 +46,7 @@ public class GameFlow {
             // プレイヤーとコンピュータのカードを比較し、結果を表示
             System.out.println("Player 1 のカード: " + player1Choice);
             System.out.println("Player 2 のカード: " + player2Choice);
-            compareCards(player1Choice, player2Choice);
+            compareCards(player1Choice, player2Choice,currentPointCard);
 
             // ポイントを計算
             player1Hand.remove(Integer.valueOf(player1Choice));
@@ -62,20 +62,22 @@ public class GameFlow {
         displayResults();
     }
 
-    private void compareCards(int playerCard, int computerCard) {
+    private void compareCards(int playerCard, int computerCard, int pointCard) {
+        System.out.println("ポイントカードの値: " + pointCard);
+    
         if (playerCard > computerCard) {
             System.out.println("Player 1 が勝ちました！");
-            player1Points += playerCard;
+            player1Points += pointCard;
         } else if (playerCard < computerCard) {
             System.out.println("Player 2 が勝ちました！");
-            player2Points += computerCard;
+            player2Points += pointCard;
         } else {
             System.out.println("引き分けです！");
         }
     }
+    
 
-
-    private int selectCardFromHand(List<Integer> hand, Scanner scanner) {
+    protected int selectCardFromHand(List<Integer> hand, Scanner scanner) {
         if (hand.isEmpty()) {
             return 0; 
         }
